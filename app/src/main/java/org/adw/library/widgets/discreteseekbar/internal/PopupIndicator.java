@@ -23,6 +23,7 @@ import android.graphics.Rect;
 import android.os.IBinder;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;

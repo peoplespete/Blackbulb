@@ -3,10 +3,18 @@ package info.papdt.blackblub.ui;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.*;
+import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.*;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,7 +27,6 @@ import android.widget.Toast;
 
 import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
 
-import moe.feng.alipay.zerosdk.AlipayZeroSdk;
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import info.papdt.blackblub.C;
@@ -29,6 +36,7 @@ import info.papdt.blackblub.services.MaskService;
 import info.papdt.blackblub.ui.adapter.ModeListAdapter;
 import info.papdt.blackblub.utils.NightScreenSettings;
 import info.papdt.blackblub.utils.Utility;
+import moe.feng.alipay.zerosdk.AlipayZeroSdk;
 
 public class LaunchActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
@@ -141,11 +149,14 @@ public class LaunchActivity extends Activity implements PopupMenu.OnMenuItemClic
 			int v = -1;
 			@Override
 			public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+        		Log.v("bbb", "mog");
 				v = value;
 				if (isRunning) {
 					Intent intent = new Intent(LaunchActivity.this, MaskService.class);
 					intent.putExtra(C.EXTRA_ACTION, C.ACTION_UPDATE);
-					intent.putExtra(C.EXTRA_BRIGHTNESS, mSeekbar.getProgress());
+          // intent.putExtra(C.EXTRA_BRIGHTNESS, mSeekbar.getProgress());
+                    intent.putExtra(C.EXTRA_BRIGHTNESS, 20);
+//					intent.putExtra(C.EXTRA_BRIGHTNESS, 255);
 					intent.putExtra(C.EXTRA_DO_NOT_SEND_CHECK, true);
 					startService(intent);
 				}

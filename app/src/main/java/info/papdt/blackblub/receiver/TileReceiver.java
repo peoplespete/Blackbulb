@@ -21,6 +21,10 @@ public class TileReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		NightScreenSettings settings = NightScreenSettings.getInstance(context);
 		Log.i(TAG, "received \"" + intent.getAction() + "\" action");
+		Log.i("bbb", "tile receviver");
+
+
+
 		if (ACTION_UPDATE_STATUS.equals(intent.getAction())) {
 			String action = intent.getStringExtra(C.EXTRA_ACTION);
 			int brightness = intent.getIntExtra(C.EXTRA_BRIGHTNESS, 50);
